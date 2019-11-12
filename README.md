@@ -11,7 +11,7 @@ Describe the project
 
 ## Code
 #### Preprocessing
-This can be skipped if you have Code/df_images_all.csv, Code/df_sequences_all.csv, and Code/df_sequences_missing_labels_completed.csv.  When these are read as dataframes, you will need to update filenames to match your file structure (as discussed above).
+This can be skipped if you have Code/df_images_all.csv, Code/df_sequences_all.csv, and Code/df_sequences_missing_labels_completed.csv.
 1. Code/preprocessing_helper_get_sequence_labels.py:  creates csv of sequences and images with their labels
     * this gets labels for sequences that have labels.
     * this also gets a list of all images by its sequence.
@@ -29,3 +29,4 @@ This can be skipped if you have Code/df_images_all.csv, Code/df_sequences_all.cs
     * the number/percentage of nearby images is configurable.  
 2. Code/training_model_building.py:  trains neural network
     * uses keras imagedatagenerator.flow_from_dataframe for pipeline
+    * When image filenames are read from dataframes, you will need to update filenames to match your file structure (as discussed above).
