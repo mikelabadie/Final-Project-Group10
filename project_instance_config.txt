@@ -1,12 +1,15 @@
+# update cuda drivers as tensorflow2.0 needs cuda 7.6.3
 wget https://www.dropbox.com/s/29k5p6tho44acvz/cudnn-10.1-linux-x64-v7.6.3.30.tgz
 sudo tar -xzvf cudnn-10.1-linux-x64-v7.6.3.30.tgz
 sudo cp cuda/include/cudnn.h /usr/local/cuda/include
 sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
 sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 
+# install deep learning libraries
 sudo -H pip3 install tensorflow-gpu
 sudo -H pip3 install keras
 
+# unzip files
 sudo apt-get install unzip
 wget https://labadie-gwu-deep-learning-emotion.s3.amazonaws.com/Landmarks.zip
 unzip Landmarks.zip
