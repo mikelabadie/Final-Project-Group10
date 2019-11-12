@@ -1,6 +1,7 @@
 # DeepLearningEmotions
 
 ### Setup
+I run the commands in project_instance_config.txt to update my environment and to download/unzip data files.
 1. Unzip images and metadata to local machine
 2. Change project_configuartion.py to reflect locations of unzipped files (though it is probably easier to unzip to match file structure as observed in project_configuration.py).
 
