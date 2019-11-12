@@ -1,11 +1,10 @@
 # DeepLearningEmotions
 
 Setup
-1. Unzip images and metadata to local machine (see Machine Setup)
-2. Change project_configuartion.py to reflect locations of unzipped files
+1. Unzip images and metadata to local machine
+2. Change project_configuartion.py to reflect locations of unzipped files (though it is probably easier to unzip to match file structure as observed in project_configuration.py).
 
-Preprocessing
-This can be skipped if you have images_all.csv, sequences_all.csv, and sequences_missing_labels_completed.csv.  When these are read as dataframes, you will need to update filenames to match your file structure.
+Preprocessing:  This can be skipped if you have images_all.csv, sequences_all.csv, and sequences_missing_labels_completed.csv.  When these are read as dataframes, you will need to update filenames to match your file structure.
 1. preprocessing_helper_get_sequence_labels.py:  this gets labels for sequences that have labels.  this also gets a list of all images by its sequence.
 2. preprocessing_helper_missing_labels.py:  i used this to create a csv of the peak image for sequences that did not have labels.  i manually tagged the sequences.  
 
