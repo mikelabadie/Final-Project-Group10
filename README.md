@@ -1,4 +1,4 @@
-# DeepLearningEmotions
+# GWU Data Science - Deep Learning - Group 10
 
 ## Setup
 1. I run the commands in project_instance_config.txt to update my environment and to download/unzip data files.
