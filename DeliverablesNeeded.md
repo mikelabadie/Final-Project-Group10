@@ -27,5 +27,6 @@ Named Final-Project-Group10, Includes everything below
 ## Individual
 Folder named mike-labadie-individual-project in group github
 * Individual-Final-Project-Report
-  * mike-labadie-individual-project.pdf = description of my work, what i did, results, summary, percentage of code from internet, references
+  * mike-labadie-final-project.pdf = description of my work, what i did, results, summary, percentage of code from internet, references
 * Code
+  * all of my scripts
