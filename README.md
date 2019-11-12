@@ -1,5 +1,8 @@
 # GWU Data Science - Deep Learning - Group 10
 
+## Summary
+Describe the project
+
 ## Setup
 1. I run the commands in project_instance_config.txt to update my environment and to download/unzip data files.
    * Updates environment (cuda drivers, tensorflow-gpu, keras)
