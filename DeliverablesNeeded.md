@@ -23,3 +23,9 @@ Named Final-Project-Group10, Includes everything below
 * Group Code (Code)
   * All code
   * Readme:  order to run, description
+  
+## Individual
+Folder named mike-labadie-individual-project in group github
+* Individual-Final-Project-Report
+  * mike-labadie-individual-project.pdf = description of my work, what i did, results, summary, percentage of code from internet, references
+* Code
