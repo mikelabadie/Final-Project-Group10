@@ -1,0 +1,12 @@
+sudo -H pip3 install tensorflow-gpu
+sudo -H pip3 install keras
+sudo apt-get install unzip
+wget https://labadie-gwu-deep-learning-emotion.s3.amazonaws.com/Landmarks.zip
+unzip Landmarks.zip
+wget https://labadie-gwu-deep-learning-emotion.s3.amazonaws.com/Emotion_labels.zip
+unzip Emotion_labels.zip
+wget https://labadie-gwu-deep-learning-emotion.s3.amazonaws.com/FACS_labels.zip
+unzip FACS_labels.zip
+wget https://labadie-gwu-deep-learning-emotion.s3.amazonaws.com/extended-cohn-kanade-images.zip
+unzip extended-cohn-kanade-images.zip
+rm -f *.zip
