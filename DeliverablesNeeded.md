@@ -1,7 +1,7 @@
 # Deliverables
 
 ## Group GitHub
-Named Final-Project-Group10, Includes everything below
+Create a repository named Final-Project-Group10 that includes everything below
 
 * Group-Proposal
 
