@@ -3,9 +3,9 @@
 ## Group GitHub
 Named Final-Project-Group10, Includes everything below
 
-* Group Proposal (Group-Proposal)
+* Group-Proposal
 
-* Group Report (Final-Group-Project-Report)
+* Final-Group-Project-Report
    * Basics:  introduction, description of the data set, description of the deep learning network and training algorithm. 
    * Experimental setup. 
        * Describe how you are going to use the data to train and test the network. 
@@ -18,9 +18,10 @@ Named Final-Project-Group10, Includes everything below
    * References
    * Code
 
-* Group Presentation (Final-Group-Presentation)
+* Final-Group-Presentation
+  * pdf of presentation
 
-* Group Code (Code)
+* Code
   * All code
   * Readme:  order to run, description
   
