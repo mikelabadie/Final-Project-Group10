@@ -7,7 +7,7 @@ I run the commands in project_instance_config.txt to update my environment and t
 
 ## Code
 ### Preprocessing
-This can be skipped if you have Code/df_images_all.csv, Code/df_sequences_all.csv, and Code/df_sequences_missing_labels_completed.csv.  When these are read as dataframes, you will need to update filenames to match your file structure.
+This can be skipped if you have Code/df_images_all.csv, Code/df_sequences_all.csv, and Code/df_sequences_missing_labels_completed.csv.  When these are read as dataframes, you will need to update filenames to match your file structure (as discussed above).
 1. Code/preprocessing_helper_get_sequence_labels.py:  this gets labels for sequences that have labels.  this also gets a list of all images by its sequence.
 2. Code/preprocessing_helper_missing_labels.py:  i used this to create a csv of the peak image for sequences that did not have labels.  i manually tagged the sequences.  
 
