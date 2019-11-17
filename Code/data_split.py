@@ -1,11 +1,9 @@
-import cv2
-import os
 import gc
-import numpy as np
-import tensorflow as tf
-from sklearn.model_selection import train_test_split
-from skimage.transform import rescale
+import os
 
+import cv2
+import numpy as np
+from sklearn.model_selection import train_test_split
 
 # Resource used to help: https://towardsdatascience.com/image-detection-from-scratch-in-keras-f314872006c9
 
