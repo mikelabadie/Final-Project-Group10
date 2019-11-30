@@ -8,6 +8,7 @@ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 # install deep learning libraries
 sudo -H pip3 install tensorflow-gpu
 sudo -H pip3 install keras
+sudo -H pip3 install opencv-python
 
 # unzip files
 sudo apt-get install unzip
