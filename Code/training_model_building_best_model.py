@@ -70,7 +70,7 @@ valid_generator=datagen.flow_from_dataframe(
 
 #%%
 model = Sequential()
-model.add(Conv2D(32, (3, 3), input_shape=(32,25,3), padding='same'))
+model.add(Conv2D(32, (3, 3), input_shape=(32,25,3), padding='same', kernel_initializer='uniform'))
 model.add(Activation('elu'))
 
 model.add(Conv2D(32, (3, 3)))
