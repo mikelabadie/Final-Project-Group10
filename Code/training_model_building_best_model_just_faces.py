@@ -15,7 +15,8 @@ from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.metrics import Recall
 from keras_preprocessing.image import ImageDataGenerator
 
-from configuration import training_images_list_filename, model_filename, image_size
+from configuration import training_images_list_filename, training_images_list_filename_just_faces, \
+    validation_images_list_filename, validation_images_list_filename_just_faces, model_filename_just_faces
 
 
 #%% ---------------------------------------- Set-Up --------------------------------------------------------------------
@@ -26,9 +27,10 @@ np.random.seed(SEED)
 tf.random.set_seed(SEED)
 weight_init = glorot_uniform(seed=SEED)
 
+image_size = (54,72)
 
 #%%
-train_df = pd.read_csv(training_images_list_filename)
+train_df = pd.read_csv(training_images_list_filename_just_faces)
 
 datagen=ImageDataGenerator(rescale=1./255.,
                            validation_split=0.25,
@@ -90,7 +92,7 @@ model.add(Dense(7, activation='softmax'))
 model.compile(Adam(lr=0.001, decay=1e-6),loss="categorical_crossentropy",metrics=["accuracy"])
 
 # checkpoints
-checkpoint = ModelCheckpoint(model_filename, monitor='val_accuracy', save_best_only=True, mode='max', verbose=1)
+checkpoint = ModelCheckpoint(model_filename_just_faces, monitor='val_accuracy', save_best_only=True, mode='max', verbose=1)
 #checkpoint = ModelCheckpoint(model_filename, monitor='val_loss', save_best_only=True, mode='min', verbose=1)
 callbacks_list = [checkpoint]
 

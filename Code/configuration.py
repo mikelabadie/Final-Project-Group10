@@ -13,6 +13,8 @@ training_sample_list_filename = "sequences_training_list.csv"
 validation_sample_list_filename = "sequences_validation_list.csv"
 training_images_list_filename = "images_training_list.csv"
 validation_images_list_filename = "images_validation_list.csv"
+training_images_list_filename_just_faces = "images_training_list_just_faces.csv"
+validation_images_list_filename_just_faces = "images_validation_list_just_faces.csv"
 training_augmented_sample_list_filename = ".csv"
 percent_images_before_peak_for_training = 0.25
 percent_images_before_peak_for_validation = 0.1
@@ -26,8 +28,11 @@ N_NEURONS = (1024, 512, 512)
 N_EPOCHS = 20
 BATCH_SIZE = 512 #large enough to ensure it gets good amount of minority classes
 DROPOUT = 0.2
-IMAGE_SIZE = (64,49) #15,25
+#IMAGE_SIZE = (64,49) #15,25
 model_filename="model.hdf5"
+model_filename_just_faces="model_just_faces.hdf5"
+image_size = (32,25)
+image_size_just_faces = (54,72)
 
 
 #%%
@@ -52,5 +57,5 @@ def resize_image(filename, target_size):
     # new_im_array = np.asarray(new_im)
 
     img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    img = cv2.resize(img, target_size, interpolation=cv2.INTER_AREA)  # AREA is better for shrinking images 
+    img = cv2.resize(img, target_size, interpolation=cv2.INTER_CUBIC)
     return img
