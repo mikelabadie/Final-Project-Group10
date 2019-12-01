@@ -52,5 +52,5 @@ def resize_image(filename, target_size):
     # new_im_array = np.asarray(new_im)
 
     img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    img = cv2.resize(img, target_size, interpolation=cv2.INTER_CUBIC)
+    img = cv2.resize(img, target_size, interpolation=cv2.INTER_AREA)  # AREA is better for shrinking images 
     return img
