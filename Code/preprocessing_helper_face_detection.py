@@ -6,8 +6,7 @@ from shutil import copyfile
 from mtcnn.mtcnn import MTCNN
 import cv2
 
-
-#%% facial detection
+# %% facial detection
 df = pd.read_csv("images_training_list.csv")
 
 for _, row in df.iterrows():
@@ -16,7 +15,7 @@ for _, row in df.iterrows():
     image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 
     # get face from image
-    color_img = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB) #mtcnn uses rgb
+    color_img = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)  # mtcnn uses rgb
     detector = MTCNN()
     faces = detector.detect_faces(color_img)
     face = faces[0]
@@ -29,12 +28,11 @@ for _, row in df.iterrows():
     face_boundary = image[y1:y2, x1:x2]
 
     # new image with just the face
-    new_filename = filename.replace("cohn-kanade-images","cohn-kanade-images-just-faces")
-    print("training",new_filename)
+    new_filename = filename.replace("cohn-kanade-images", "cohn-kanade-images-just-faces")
+    print("training", new_filename)
     cv2.imwrite(new_filename, face_boundary)
 
-
-#%%
+# %%
 df = pd.read_csv("images_validation_list.csv")
 
 for _, row in df.iterrows():
@@ -43,7 +41,7 @@ for _, row in df.iterrows():
     image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 
     # get face from image
-    color_img = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB) #mtcnn uses rgb
+    color_img = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)  # mtcnn uses rgb
     detector = MTCNN()
     faces = detector.detect_faces(color_img)
     face = faces[0]
@@ -56,16 +54,15 @@ for _, row in df.iterrows():
     face_boundary = image[y1:y2, x1:x2]
 
     # new image with just the face
-    new_filename = filename.replace("cohn-kanade-images","cohn-kanade-images-just-faces")
-    print("validation",new_filename)
+    new_filename = filename.replace("cohn-kanade-images", "cohn-kanade-images-just-faces")
+    print("validation", new_filename)
     cv2.imwrite(new_filename, face_boundary)
 
-
-#%% update filenames for just faces
+# %% update filenames for just faces
 df = pd.read_csv("images_training_list.csv")
-df["name"] = df["name"].str.replace("cohn-kanade-images","cohn-kanade-images-just-faces")
-df.to_csv("images_training_list_just_faces.csv",index=False)
+df["name"] = df["name"].str.replace("cohn-kanade-images", "cohn-kanade-images-just-faces")
+df.to_csv("images_training_list_just_faces.csv", index=False)
 
 df = pd.read_csv("images_validation_list.csv")
-df["name"] = df["name"].str.replace("cohn-kanade-images","cohn-kanade-images-just-faces")
-df.to_csv("images_validation_list_just_faces.csv",index=False)
+df["name"] = df["name"].str.replace("cohn-kanade-images", "cohn-kanade-images-just-faces")
+df.to_csv("images_validation_list_just_faces.csv", index=False)
