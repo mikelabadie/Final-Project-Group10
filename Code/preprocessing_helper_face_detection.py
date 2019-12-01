@@ -59,3 +59,13 @@ for _, row in df.iterrows():
     new_filename = filename.replace("cohn-kanade-images","cohn-kanade-images-just-faces")
     print("validation",new_filename)
     cv2.imwrite(new_filename, face_boundary)
+
+
+#%% update filenames for just faces
+df = pd.read_csv("images_training_list.csv")
+df["name"] = df["name"].str.replace("cohn-kanade-images","cohn-kanade-images-just-faces")
+df.to_csv("images_training_list_just_faces.csv",index=False)
+
+df = pd.read_csv("images_validation_list.csv")
+df["name"] = df["name"].str.replace("cohn-kanade-images","cohn-kanade-images-just-faces")
+df.to_csv("images_validation_list_just_faces.csv",index=False)
