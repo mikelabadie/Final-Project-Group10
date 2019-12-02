@@ -20,7 +20,7 @@ These scripts represent the progression of our modeling efforts.
 ## Evaluation
 These scripts were used to evaluate the quality of our trained models.
 * model_evaluation.py
-* model_evaluation_helpers.py
+* model_evaluation_helpers_mlabadie.py
 
 ## CSV Used in Modeling
 These csv files were used to contain links and class labels for our training and testing image sets.  
