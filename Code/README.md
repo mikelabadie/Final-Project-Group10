@@ -1,6 +1,6 @@
 This is a description of our coding products for this project.  The order represents the logical order needed to replicate our work.
 
-## Configuation
+## Configuration
 This file represents a centralized area for settings (i.e. file paths, naming, etc) used throughout the project.
 * configuration.py
 
