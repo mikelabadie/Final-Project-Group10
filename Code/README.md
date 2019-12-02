@@ -17,7 +17,7 @@ These scripts were used to evaluate the quality of our trained models.
 * model_evaluation_helpers.py
 
 ## CSV Used in Modeling
-These csv files were used to contain links and class information for our training and testing sets.  
+These csv files were used to contain links and class labels for our training and testing image sets.  
 * Data Inventory: This is the output of preprocessing_get_sequence_labels.py and our manual tagging.  It is the main effort at taking inventory of our dataset.  The output is used by training_split.py and preprocessing_helper_face_detection.py.
   * images_all.csv
   * sequences_all.csv
