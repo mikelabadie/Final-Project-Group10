@@ -1,8 +1,8 @@
 ## Preprocessing
 These scripts were used to create datasets and metadata for training our models. 
 * preprocessing_get_sequence_labels.py
-* preprocessing_helper_face_detection.py
 * training_split.py
+* preprocessing_helper_face_detection.py
 
 ## Modeling
 These scripts represent the progression of our modeling efforts.
@@ -17,16 +17,14 @@ These scripts were used to evaluate the quality of our trained models.
 
 ## CSV Used in Modeling
 These csv files were used to contain links and class information for our training and testing sets.  
-* Training
+* Data Inventory
   * images_all.csv
-  * images_training_list.csv
-  * missing_labels_completed.csv
-  * images_training_tagged.csv
   * sequences_all.csv
-  * sequences_missing_labels.csv
   * sequences_missing_labels_completed.csv
+* Training Set
+  * images_training_list.csv
   * sequences_training_list.csv
-* Validation
+* Validation Set
   * images_validation_list.cv
   * sequences_validation_list.csv
 * Tuning Results
