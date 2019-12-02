@@ -6,7 +6,7 @@ This file represents a centralized area for settings (i.e. file paths, naming, e
 
 ## Preprocessing
 These scripts were used to create datasets and metadata for training our models. 
-* preprocessing_get_sequence_labels.py: creates initial datasets built by finding all images and their associated class labels.
+* <b>preprocessing_get_sequence_labels.py</b>: creates initial datasets built by finding all images and their associated class labels.
 * <b>training_split.py</b>:  splits the dataset into a training and testing set.
 * <b>preprocessing_helper_face_detection.py</b>:  creates new images with extracts of just the subject's face.
 
@@ -19,7 +19,7 @@ These scripts represent the progression of our modeling efforts.
   
 ## Evaluation
 These scripts were used to evaluate the quality of our trained models.
-* <b>model_evaluation.py:  evaluates the three models on the hold out set.
+* <b>model_evaluation.py</b>:  evaluates the three models on the hold out set.
 * <b>model_evaluation_helpers_mlabadie.py</b>:  implements a confusion matrix as given by sklearn.
 
 ## CSV Used in Modeling
