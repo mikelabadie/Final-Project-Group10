@@ -18,10 +18,7 @@ from keras_preprocessing.image import ImageDataGenerator
 from configuration import image_directory, augmented_image_directory, \
     training_images_list_filename, training_augmented_sample_list_filename, \
     validation_images_list_filename, \
-    class_map, num_classes, model_filename, \
-    LR, N_NEURONS, N_EPOCHS, BATCH_SIZE, DROPOUT, IMAGE_SIZE, \
-    resize_image
-
+    class_map, num_classes, model_filename_first
 
 #%% ---------------------------------------- Set-Up --------------------------------------------------------------------
 SEED = 42
@@ -74,7 +71,7 @@ test_generator = test_datagen.flow_from_dataframe(
     class_mode='categorical')
 
 
-#%%
+#%% https://keras.io/examples/cifar10_cnn/
 model = Sequential()
 model.add(Conv2D(32, (3, 3), padding='same'))#, input_shape=(64,49)))
 model.add(Activation('relu'))
@@ -95,15 +92,16 @@ model.add(Dropout(0.5))
 model.add(Dense(7, activation='softmax'))
 model.compile(RMSprop(lr=0.0001, decay=1e-6),loss="categorical_crossentropy",metrics=["accuracy"])
 
+# checkpoints
+checkpoint = ModelCheckpoint(model_filename_first, monitor='val_accuracy', save_best_only=True, mode='max', verbose=1)
+#checkpoint = ModelCheckpoint(model_filename, monitor='val_loss', save_best_only=True, mode='min', verbose=1)
+callbacks_list = [checkpoint]
+
 STEP_SIZE_TRAIN=train_generator.n//train_generator.batch_size
 STEP_SIZE_VALID=valid_generator.n//valid_generator.batch_size
 model.fit_generator(generator=train_generator,
                     steps_per_epoch=STEP_SIZE_TRAIN,
                     validation_data=valid_generator,
                     validation_steps=STEP_SIZE_VALID,
+                    callbacks=callbacks_list,
                     epochs=10)
-
-
-#%%
-STEP_SIZE_TEST=test_generator.n//test_generator.batch_size
-model.evaluate_generator(generator=valid_generator,steps=STEP_SIZE_TEST)

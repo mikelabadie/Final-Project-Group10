@@ -30,6 +30,7 @@ BATCH_SIZE = 512 #large enough to ensure it gets good amount of minority classes
 DROPOUT = 0.2
 #IMAGE_SIZE = (64,49) #15,25
 model_filename="model.hdf5"
+model_filename_first = "model_first.hdf5"
 model_filename_just_faces="model_just_faces.hdf5"
 image_size = (32,25)
 image_size_just_faces = (54,72)
