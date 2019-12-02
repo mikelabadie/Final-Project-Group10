@@ -28,9 +28,10 @@ for _, row in df.iterrows():
     face_boundary = image[y1:y2, x1:x2]
 
     # new image with just the face
-    new_filename = filename.replace("cohn-kanade-images", "cohn-kanade-images-just-faces")
-    print("training", new_filename)
-    cv2.imwrite(new_filename, face_boundary)
+    print("training", filename)
+    location = filename.split("/home/ubuntu/cohn-kanade-images", 1)[1]
+    if not cv2.imwrite(r'/home/ubuntu/cohn-kanade-images' + location, face_boundary):
+        raise Exception("Could not write image")
 
 # %%
 df = pd.read_csv("images_validation_list.csv")
@@ -54,9 +55,10 @@ for _, row in df.iterrows():
     face_boundary = image[y1:y2, x1:x2]
 
     # new image with just the face
-    new_filename = filename.replace("cohn-kanade-images", "cohn-kanade-images-just-faces")
-    print("validation", new_filename)
-    cv2.imwrite(new_filename, face_boundary)
+    print("training", filename)
+    location = filename.split("/home/ubuntu/cohn-kanade-images", 1)[1]
+    if not cv2.imwrite(r'/home/ubuntu/cohn-kanade-images' + location, face_boundary):
+        raise Exception("Could not write image")
 
 # %% update filenames for just faces
 df = pd.read_csv("images_training_list.csv")
