@@ -2,25 +2,25 @@ This is a description of our coding products for this project.  The order repres
 
 ## Configuration
 This file represents a centralized area for settings (i.e. file paths, naming, etc) used throughout the project.
-* configuration.py:  contains settings (i.e file paths, naming, etc) used throughout the project.
+* <b>configuration.py</b>:  contains settings (i.e file paths, naming, etc) used throughout the project.
 
 ## Preprocessing
 These scripts were used to create datasets and metadata for training our models. 
 * preprocessing_get_sequence_labels.py: creates initial datasets built by finding all images and their associated class labels.
-* training_split.py:  splits the dataset into a training and testing set.
-* preprocessing_helper_face_detection.py:  creates new images with extracts of just the subject's face.
+* <b>training_split.py</b>:  splits the dataset into a training and testing set.
+* <b>preprocessing_helper_face_detection.py</b>:  creates new images with extracts of just the subject's face.
 
 ## Modeling
 These scripts represent the progression of our modeling efforts.
-  * training_model_building.py:  first model, as taken from Keras's website.
-  * training_model_tuning.py:  performs hyperparameter tuning.
-  * training_model_building_best_model.py:  implementation of the best model found in tuning.
-  * training_model_building_best_model_just_faces.py:  implementation of the best model, trained on the face extract images.
+  * <b>training_model_building.py</b>:  first model, as taken from Keras's website.
+  * <b>training_model_tuning.py</b>:  performs hyperparameter tuning.
+  * <b>training_model_building_best_model.py</b>:  implementation of the best model found in tuning.
+  * <b>training_model_building_best_model_just_faces.py</b>:  implementation of the best model, trained on the face extract images.
   
 ## Evaluation
 These scripts were used to evaluate the quality of our trained models.
-* model_evaluation.py:  evaluates the three models on the hold out set.
-* model_evaluation_helpers_mlabadie.py:  implements a confusion matrix as given by sklearn.
+* <b>model_evaluation.py:  evaluates the three models on the hold out set.
+* <b>model_evaluation_helpers_mlabadie.py</b>:  implements a confusion matrix as given by sklearn.
 
 ## CSV Used in Modeling
 These csv files were used to contain links and class labels for our training and testing image sets.  
