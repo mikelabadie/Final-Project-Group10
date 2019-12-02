@@ -7,7 +7,7 @@ These scripts were used to create datasets and metadata for training our models.
 ## Modeling
 These scripts represent the progression of our modeling efforts.
   * training_model_building.py
-  * training_model_building_tuning.py
+  * training_model_tuning.py
   * training_model_building_best_model.py
   * training_model_building_best_model_just_faces.py
   
