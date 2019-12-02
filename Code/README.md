@@ -1,3 +1,9 @@
+This is a description of our coding products for this project.  The order represents the logical order needed to replicate our work.
+
+## Configuation
+This file represents a centralized area for settings (i.e. file paths, naming, etc) used throughout the project.
+* configuration.py
+
 ## Preprocessing
 These scripts were used to create datasets and metadata for training our models. 
 * preprocessing_get_sequence_labels.py
@@ -24,7 +30,7 @@ These csv files were used to contain links and class labels for our training and
   * sequences_missing_labels_completed.csv
 * Training Set:  This is the output of training_split.py and preprocessing_helper_face_detection.py.  These are used to build the dataframes on which our models are trained and evaluated.
   * images_training_list.csv
-  * images_validation_list.cv
+  * images_validation_list.csv
   * images_training_list_just_faces.csv
   * images_validation_list_just_faces.csv
 * Tuning Results:  This is the output of training_model_building_tuning.py.  We used these results to tune our models.
