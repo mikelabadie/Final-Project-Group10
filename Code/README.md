@@ -21,6 +21,7 @@ These scripts represent the progression of our modeling efforts.
 These scripts were used to evaluate the quality of our trained models.
 * <b>model_evaluation.py</b>:  evaluates the three models on the hold out set.
 * <b>model_evaluation_helpers_mlabadie.py</b>:  implements a confusion matrix as given by sklearn.
+* <b>model_predict.py</b>:  allows for adhoc prediction testing.
 
 ## CSV Used in Modeling
 These csv files were used to contain links and class labels for our training and testing image sets.  
