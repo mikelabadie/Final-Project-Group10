@@ -1,22 +1,21 @@
 # %% --------------------------------------- Imports --------------------------------------------------------------------
-from PIL import Image
-import pandas as pd
-import numpy as np
-from keras.utils import np_utils
 import os
 import random
-import numpy as np
-import tensorflow as tf
-from tensorflow.keras.initializers import glorot_uniform
-from tensorflow.keras.models import Sequential, load_model
-from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Activation, Flatten, Conv2D, MaxPooling2D
-from tensorflow.keras.optimizers import Adam, RMSprop, Adadelta
-from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
-from keras.metrics import Recall
-from keras_preprocessing.image import ImageDataGenerator
 
-from configuration import training_images_list_filename, training_images_list_filename_just_faces, \
-    validation_images_list_filename, validation_images_list_filename_just_faces, model_filename_just_faces
+import numpy as np
+import pandas as pd
+import tensorflow as tf
+from keras_preprocessing.image import ImageDataGenerator
+from tensorflow.keras.callbacks import ModelCheckpoint
+from tensorflow.keras.initializers import glorot_uniform
+from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D, BatchNormalization
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.optimizers import Adam
+
+from configuration import training_images_list_filename_just_faces, \
+    model_filename_just_faces, validation_images_list_filename_just_faces
+
+# https://www.kaggle.com/code/yasserhessein/emotion-recognition-with-vgg16
 
 # %% ---------------------------------------- Set-Up --------------------------------------------------------------------
 SEED = 42
@@ -30,6 +29,7 @@ image_size = (54, 72)
 
 # %%
 train_df = pd.read_csv(training_images_list_filename_just_faces)
+valid_df = pd.read_csv(validation_images_list_filename_just_faces)
 
 datagen = ImageDataGenerator(rescale=1. / 255.,
                              validation_split=0.25,
@@ -52,7 +52,7 @@ train_generator = datagen.flow_from_dataframe(
     target_size=image_size)
 
 valid_generator = datagen.flow_from_dataframe(
-    dataframe=train_df,
+    dataframe=valid_df,  # train_df
     directory=None,
     x_col="name",
     y_col="class",
@@ -63,7 +63,31 @@ valid_generator = datagen.flow_from_dataframe(
     class_mode="categorical",
     target_size=image_size)
 
+base_model = tf.keras.applications.VGG16(input_shape=(image_size[0], image_size[1], 3), include_top=False,
+                                         weights="imagenet")
+
+for layer in base_model.layers[:-4]:
+    layer.trainable = False
+
 # %%
+model = Sequential()
+model.add(base_model)
+model.add(Dropout(0.5))
+model.add(Flatten())
+model.add(BatchNormalization())
+model.add(Dense(32, kernel_initializer='he_uniform'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+model.add(Dense(32, kernel_initializer='he_uniform'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+model.add(Dense(32, kernel_initializer='he_uniform'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Dense(9, activation='softmax'))
+# %% --------------------------------------Old Code -------------------------------------------------------------------
 model = Sequential()
 model.add(Conv2D(32, (3, 3), input_shape=(image_size[0], image_size[1], 3), padding='same'))
 model.add(Activation('elu'))
@@ -85,9 +109,10 @@ model.add(Flatten())
 model.add(Dense(512))
 model.add(Activation('elu'))
 model.add(Dropout(0.5))
-model.add(Dense(7, activation='softmax'))
+model.add(Dense(9, activation='softmax'))
+# %% --------------------------------------Old Code -------------------------------------------------------------------
 
-model.compile(Adam(lr=0.001, decay=1e-6), loss="categorical_crossentropy", metrics=["accuracy"])
+model.compile(Adam(learning_rate=0.001, decay=1e-6), loss="categorical_crossentropy", metrics=["accuracy"])
 
 # checkpoints
 checkpoint = ModelCheckpoint(model_filename_just_faces, monitor='val_accuracy', save_best_only=True, mode='max',
@@ -102,4 +127,4 @@ model.fit_generator(generator=train_generator,
                     validation_data=valid_generator,
                     validation_steps=STEP_SIZE_VALID,
                     callbacks=callbacks_list,
-                    epochs=30)
+                    epochs=100)

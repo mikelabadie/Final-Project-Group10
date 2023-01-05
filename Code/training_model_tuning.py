@@ -1,31 +1,21 @@
 # %% --------------------------------------- Imports --------------------------------------------------------------------
-from PIL import Image
-import pandas as pd
-import numpy as np
-from keras.utils import np_utils
 import os
-import talos
 import random
+
 import numpy as np
+import pandas as pd
+import talos
 import tensorflow as tf
+from keras.callbacks import ModelCheckpoint
 from keras.initializers import glorot_uniform
-from keras.models import Sequential, load_model
-from keras.layers import Dense, Dropout, BatchNormalization, Activation, Flatten, Conv2D, MaxPooling2D
+from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
+from keras.models import Sequential
 from keras.optimizers import Adam, SGD, Nadam, RMSprop
-from keras.callbacks import ModelCheckpoint, EarlyStopping
-from keras.metrics import Recall
 from keras_preprocessing.image import ImageDataGenerator
-
-from configuration import image_directory, augmented_image_directory, \
-    training_images_list_filename, training_augmented_sample_list_filename, \
-    validation_images_list_filename, \
-    class_map, num_classes, model_filename, \
-    LR, N_NEURONS, N_EPOCHS, BATCH_SIZE, DROPOUT, image_size, \
-    resize_image, training_images_list_filename_just_faces, validation_images_list_filename_just_faces
-
-from talos.model.normalizers import lr_normalizer
 from talos.model.early_stopper import early_stopper
-from talos import Evaluate
+from talos.model.normalizers import lr_normalizer
+
+from configuration import training_images_list_filename_just_faces, validation_images_list_filename_just_faces
 
 # %% ---------------------------------------- Set-Up -------------------------------------------------------------------
 SEED = 42
@@ -83,10 +73,11 @@ test_generator = test_datagen.flow_from_dataframe(
     class_mode='categorical')
 
 # %% ----------------------------------- Hyper Parameters --------------------------------------------------------------
-p = {'lr': (0.0001, 10, 10),
+p = {'lr': (0.0001, 0.001, 0.01),
      'neurons_layer_2': [32, 64, 128],
      'neurons_layer_3': [32, 64, 128, 256],
      'neurons_layer_4': [32, 64, 128, 256],
+     'neurons_layer_5': [64, 128, 256, 512],
      'batch_size': [256, 512],
      'epochs': [30],
      'dropout': (0, 0.50, 10),
@@ -100,6 +91,7 @@ p = {'lr': (0.0001, 10, 10),
      'activation_3': ['relu', 'elu', 'tanh'],
      'activation_4': ['relu', 'elu', 'tanh'],
      'activation_5': ['relu', 'elu', 'tanh'],
+     'activation_6': ['relu', 'elu', 'tanh'],
      'last_activation': ['softmax']}
 
 
@@ -115,15 +107,17 @@ def emotions_model(dummyXtrain, dummyYtrain, dummyXval, dummyYval, params):
     model.add(Dropout(params['dropout']))
     model.add(Conv2D(params['neurons_layer_3'], (3, 3), padding='same'))
     model.add(Activation(params['activation_3']))
-    model.add(Conv2D(params['neurons_layer_4'], (3, 3)))
+    model.add(Conv2D(params['neurons_layer_4'], (3, 3), padding='same'))
     model.add(Activation(params['activation_4']))
+    model.add(Conv2D(params['neurons_layer_5'], (3, 3)))
+    model.add(Activation(params['activation_5']))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(params['dropout']))
     model.add(Flatten())
     model.add(Dense(512))
-    model.add(Activation(params['activation_5']))
+    model.add(Activation(params['activation_6']))
     model.add(Dropout(params['dropout']))
-    model.add(Dense(7, activation=params['last_activation']))
+    model.add(Dense(8, activation=params['last_activation']))
     model.compile(optimizer=params['optimizer'](lr=lr_normalizer(params['lr'], params['optimizer'])),
                   loss=params['loss'], metrics=['accuracy'])
 
@@ -143,7 +137,7 @@ if python_version_tuple()[0] == '3':
     izip = zip
     imap = map
 else:
-    from itertools import izip, imap
+    from itertools import izip
 
 import numpy as np
 
@@ -172,7 +166,7 @@ t = talos.Scan(x=trainX,
 results = talos.Evaluate(t)
 results_df = results.data
 results_df = results_df.sort_values(by='val_accuracy', ascending=True)
-results_df.to_csv(r'/home/ubuntu/Desktop-Sync-Folder/Final-Project-Group10/Code/tuning_results_4.csv')
+results_df.to_csv(r'tuning_results_NEW.csv')
 
 # %% ------------------------------------------ Validate Best Model ----------------------------------------------------
 # Get the best model from the results and try below:
